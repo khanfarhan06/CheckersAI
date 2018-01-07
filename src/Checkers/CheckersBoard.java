@@ -120,6 +120,37 @@ public class CheckersBoard {
         board[row][column] = piece;
     }
 
+    public List<Move> getAllMovesOfPieceAt(int row, int column){
+        List<Move> legalMoves = new ArrayList<>();
+        Piece pieceToMove = this.board[row][column];
+        if(pieceToMove.getAlliance() != this.allianceToMove)
+            return legalMoves;
+        switch (pieceToMove){
+            case WHITE_PAWN:
+                legalMoves.addAll(getAllJumpMovesWhitePawn(row, column));
+                if(legalMoves.isEmpty())
+                    legalMoves.addAll(getAllSimpleMovesWhitePawn(row, column));
+                return legalMoves;
+            case BLACK_PAWN:
+                legalMoves.addAll(getAllJumpMovesBlackPawn(row, column));
+                if(legalMoves.isEmpty())
+                    legalMoves.addAll(getAllSimpleMovesBlackPawn(row, column));
+                return legalMoves;
+            case WHITE_KING:
+                legalMoves.addAll(getAllJumpMovesWhiteKing(row, column));
+                if(legalMoves.isEmpty())
+                    legalMoves.addAll(getAllSimpleMovesKing(row, column));
+                return legalMoves;
+            case BLACK_KING:
+                legalMoves.addAll(getAllJumpMovesBlackKing(row, column));
+                if(legalMoves.isEmpty())
+                    legalMoves.addAll(getAllSimpleMovesKing(row, column));
+                return legalMoves;
+            default:
+                return legalMoves;
+        }
+    }
+
     /***
      * Used to get all the possible moves in a given board position
      * @return List of Moves possible in the current board position
@@ -631,9 +662,9 @@ public class CheckersBoard {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if ((i + j) % 2 != 0)   //Pieces are present only on the squares where sum of row and column indices is odd.
-                    System.out.print(board[i][j]); //Print out the piece at this square, toString() of the corresponding Piece is called
+                    System.out.print(board[i][j]+" "); //Print out the piece at this square, toString() of the corresponding Piece is called
                 else
-                    System.out.print("-");  //For unused squares print a hyphen
+                    System.out.print("- ");  //For unused squares print a hyphen
             }
             System.out.println();
         }

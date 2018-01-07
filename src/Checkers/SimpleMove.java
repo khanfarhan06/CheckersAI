@@ -10,10 +10,10 @@ package Checkers;
  *              finalColumnPosition - the row number of the square where the piece moved to after making the move
  */
 public class SimpleMove implements Move, Cloneable {
-    int initialRowPosition;
-    int initialColumnPosition;
-    int finalRowPosition;
-    int finalColumnPosition;
+    public int initialRowPosition;
+    public int initialColumnPosition;
+    public int finalRowPosition;
+    public int finalColumnPosition;
 
     /***
      * Default constructor

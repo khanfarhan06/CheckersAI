@@ -8,7 +8,7 @@ public class TestCheckersBoard {
 
     public static void main(String[] args) {
         CheckersBoard checkersBoard = new CheckersBoard();
-        setPiecesForBlackJumpTest(checkersBoard);
+        setPiecesForWhiteKingCircularJumpTest(checkersBoard);
         System.out.println("Initial Board Position:");
         checkersBoard.showBoard();
         List<JumpMove> legalJumps =  checkersBoard.getAllJumpMoves();
@@ -18,6 +18,20 @@ public class TestCheckersBoard {
             System.out.println("Jumped Position");
             checkersBoardCopy.showBoard();
         }
+    }
+
+    private static void setPiecesForWhiteKingCircularJumpTest(CheckersBoard checkersBoard){
+        checkersBoard.setAllianceToMove(Alliance.WHITE);
+        checkersBoard.setAllPiecesEmpty();
+        checkersBoard.setPieceAtPosition(4,3,Piece.WHITE_KING);
+        checkersBoard.setPieceAtPosition(3,2,Piece.BLACK_PAWN);
+        checkersBoard.setPieceAtPosition(3,4,Piece.BLACK_PAWN);
+        checkersBoard.setPieceAtPosition(3,6,Piece.BLACK_PAWN);
+        checkersBoard.setPieceAtPosition(5,2,Piece.BLACK_PAWN);
+        checkersBoard.setPieceAtPosition(5,4,Piece.BLACK_PAWN);
+        checkersBoard.setPieceAtPosition(5,6,Piece.BLACK_PAWN);
+        checkersBoard.setPieceAtPosition(1,2,Piece.BLACK_PAWN);
+        checkersBoard.setPieceAtPosition(1,4,Piece.BLACK_PAWN);
     }
 
     private static void setPiecesForWhiteJumpTest(CheckersBoard checkersBoard){

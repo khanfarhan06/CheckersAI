@@ -58,7 +58,7 @@ public enum Piece {
 
         @Override
         public String toString() {
-            return "X";
+            return "*";
         }
     };
 
